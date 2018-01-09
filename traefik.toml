@@ -1,0 +1,65 @@
+################################################################
+# Global configuration
+################################################################
+
+debug = true
+ProvidersThrottleDuration = "0s"
+RootCAs = [ "/certs/RootCA.pem" ]
+defaultEntryPoints = ["http", "https"]
+
+
+[acme]
+email = "nobody@traefik.io"
+storage = "acme/account"
+entryPoint = "https"
+acmeLogging = true
+OnHostRule = true
+# caServer = "https://acme-staging.api.letsencrypt.org/directory"
+
+
+[entryPoints]
+  [entryPoints.http]
+  address = ":80"
+    [entryPoints.http.redirect]
+    entryPoint = "https"
+  [entryPoints.https]
+  address = ":443"
+
+
+[retry]
+
+# [healthcheck]
+# interval = "10s"
+
+
+################################################################
+# Web configuration backend
+################################################################
+
+[web]
+address = ":8080"
+ReadOnly = true
+# CertFile = "traefik.crt"
+# KeyFile = "traefik.key"
+
+[web.statistics]
+RecentErrors = 200
+
+# To enable basic auth on the webui
+# Passwords can be encoded in MD5, SHA1 and BCrypt: you can use htpasswd to generate those ones
+# [web.auth.basic]
+# users = ["TRAEFIK_AUTH"]
+
+
+################################################################
+# Etcd configuration backend
+################################################################
+[etcd]
+endpoint = "localhost:2379"
+watch = true
+useAPIV3 = true
+# username = "ETCD_USER"
+# password = "ETCD_PASS"
+
+[etcd.tls]
+insecureskipverify = true
