@@ -13,7 +13,7 @@ email = "nobody@traefik.io"
 storage = "acme/account"
 entryPoint = "https"
 acmeLogging = true
-OnHostRule = true
+onHostRule = true
 # caServer = "https://acme-staging.api.letsencrypt.org/directory"
 
 
