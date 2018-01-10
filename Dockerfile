@@ -29,6 +29,7 @@ ENV ETCD_NAME="etcd" \
 
 # Traefik
 COPY --from=1 /traefik /usr/local/bin/
+COPY --from=1 /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
 COPY traefik.toml /etc/traefik/traefik.toml
 
 COPY launch .
