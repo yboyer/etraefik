@@ -11,7 +11,8 @@ COPY supervisord.conf /etc/supervisord.conf
 # ETCD
 COPY --from=0 /usr/local/bin/etcd /usr/local/bin/
 COPY --from=0 /usr/local/bin/etcdctl /usr/local/bin/
-RUN mkdir -p {/var/etcd/,/var/lib/etcd/}
+RUN mkdir -p /var/etcd/
+RUN mkdir -p /var/lib/etcd/
 ENV ETCD_NAME="etcd" \
     ETCD_DATA_DIR="/etcd-data" \
     ETCD_INITIAL_CLUSTER_TOKEN="etcd-cluster" \
@@ -32,7 +33,7 @@ COPY --from=1 /traefik /usr/local/bin/
 COPY --from=1 /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
 COPY traefik.toml /etc/traefik/traefik.toml
 
-COPY launch .
+COPY launch.sh .
 
 RUN printf '#!/bin/sh\ntail -f /var/log/* -n 300' > /usr/local/bin/debug && \
     chmod +x /usr/local/bin/debug
@@ -41,4 +42,4 @@ VOLUME /etcd-data
 
 EXPOSE 2379 2380 80
 
-ENTRYPOINT ["./launch"]
+ENTRYPOINT ["./launch.sh"]

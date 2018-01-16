@@ -10,7 +10,6 @@ if [ -z $ETCD_USER ] || [ -z $ETCD_PASS ]; then
 else
   etcd &
   insec=' --insecure-transport=false --insecure-skip-tls-verify'
-  etcdctl $insec member list
   etcdctl $insec user add $ETCD_USER:$ETCD_PASS
   etcdctl $insec auth enable
   kill %1
