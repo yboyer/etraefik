@@ -11,7 +11,7 @@ defaultEntryPoints = ["http", "https"]
 [acme]
 email = "nobody@traefik.io"
 storage = "/traefik/acme/account"
-entryPoint = "http"
+entryPoint = "https"
 acmeLogging = true
 onHostRule = true
 # caServer = "https://acme-staging.api.letsencrypt.org/directory"
