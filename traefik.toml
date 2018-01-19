@@ -67,3 +67,11 @@ useAPIV3 = true
 
 [etcd.tls]
 insecureskipverify = true
+
+
+################################################################
+# External rules
+################################################################
+[file]
+directory = "/etc/traefik/rules"
+watch = true
