@@ -47,4 +47,12 @@ else
   sed -i -e 's|email = .*|email = "'$ACME_EMAIL'"|' $destTraefikConf
 fi
 
+if [ "$DEBUG" == "true" ]; then
+  echo -e '\e[93m'
+  echo 'Using dev ACME.'
+  echo -e '\e[0m'
+  sed -i -e 's|# caServer = |caServer = |' $destTraefikConf
+fi
+
+
 exec supervisord

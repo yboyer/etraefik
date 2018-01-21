@@ -2,13 +2,13 @@ const fs = require('fs');
 const {Etcd3} = require('etcd3');
 
 const client = new Etcd3({
-    hosts: 'https://localhost:2379',
+    hosts: 'https://127.0.0.1:2379',
     credentials: {
         rootCertificate: fs.readFileSync(`${__dirname}/certs/etcd/ca.pem`)
     },
     auth: {
-        username: process.env.ETCD_USER,
-        password: process.env.ETCD_PASS
+        username: 'root',
+        password: 'test'
     }
 });
 
