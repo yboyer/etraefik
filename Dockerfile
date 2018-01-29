@@ -1,5 +1,5 @@
 FROM gcr.io/etcd-development/etcd:v3.2.13
-FROM traefik:v1.5.0-rc5
+FROM traefik:v1.5.0
 
 
 FROM alpine
